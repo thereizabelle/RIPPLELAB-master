@@ -1,0 +1,15 @@
+clear variables
+RippleLab_Data1_32 = importdata('1-32final.rhfe');
+nbrElectrode = 32;
+names = fieldnames(RippleLab_Data1_32);
+
+for i = 2:33
+    x{i-1} = cell(size(RippleLab_Data1_32.(names{i}).st_HFOInfo.m_EvtLims,1),1); %initialise sizes 
+    for j =  1:size(x{i-1},1)
+        event{j,:} = RippleLab_Data1_32.(names{i}).st_HFOInfo.m_EvtLims(j,1) : RippleLab_Data1_32.(names{i}).st_HFOInfo.m_EvtLims(j,2);
+        %event(j:length(event) ) = [];
+        %x{i-1} = event;
+    end
+    event(j+1:length(event) ) = [];
+    x{i-1} = event;
+end
